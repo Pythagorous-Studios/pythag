@@ -99,25 +99,4 @@ class player():
     def look(self):
         return self.mgeng.gattr(self.x,self.y,"descrip")
             
-'''            
-print("dbj init")
-mapp=game("mapp") 
-fred=player('fred',0,0,mapp) 
-dock=place('dock',0,0,"its a dock")
-street=place('street',1,0,"its a street")
-house=place("house",2,0,"its a old decrepit house")
-boat=place(-1,0,"a rickety old motor boat")   
-mapp.addplace(dock)    
-mapp.addplace(street) 
-mapp.addplace(house)    
-mapp.addplace(boat)
-mapp.addplayer(fred)
-rock=obj("rock",0,0,mapp)
-print(fred.x,fred.y,fred.look())
-fred.goto(1,0)
-print(fred.x,fred.y,fred.look())
-fred.goto(2,0)
-print(fred.x,fred.y,fred.look())
-fred.goto(-1,0)
-print(fred.x,fred.y,fred.look())
-'''
+
