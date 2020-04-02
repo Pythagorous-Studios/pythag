@@ -69,18 +69,7 @@ class place():
     def exists(self): 
         return True 
         
-class obj():
-    def __init__ (self,name,x,y,mgeng,descrip=None,ident=[]):
-        print(mgeng.coords_exist(x,y))
-        if mgeng.coords_exist(x,y)==True:
-            self.name=name
-            self.x=x 
-            self.y=y
-            self.mgeng=mgeng
-            self.descrip=descrip
-            self.ident=ident
-        else:
-            raise InvalidCoords
+
     
 class player(): 
     def __init__(self,name,x,y,management_engine): 
