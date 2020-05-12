@@ -60,7 +60,49 @@ class game():
                 except:
                     pass
     class bat_mng():
-        def __init__
+        def __init__(self,combs=[],team=False):
+            turnorder=[]
+            if team==True:
+                for team in combs:
+                    for comb in team:
+                        turnorder.append(comb)
+            elif team==False:
+                for comb in combs:
+                    turnorder.append(comb)
+            else:
+                log('huh?',3)
+            #human readable,ie not pointers, for the inevitable debug
+            humanturnorder=[]
+            for comb in turnorder:
+                humanturnorder.append(comb.name)
+            turn=iter(turnorder)
+            next(turn)
+            self.combs=combs
+            self.team=team
+            self.turnorder=turnorder
+            self.humanturnorder=humanturnorder
+            self.turn=turn
+        def action(self,src,mv,tgt):
+            if src==turn:
+                if move in src.moves and isinstance(mv,move):
+                    if tgt in combs:
+                        mvdat=src.move.effect()
+                        #fyi form is eff,stat,amt
+                        if mvdat[0]=='attack':
+                            if mvdat[1]=='hp':
+                                #what else?, fyi all atks should be positive
+                                tgt.hpmod(mvdat[1]*-1)
+                        if mvdat[0]=='buff':
+                            if mvdat[1]=='hp':
+                                tgt.hpmod(mvdat[1])
+                            
+            else:
+                log('nice try enchillada man! Wait until its your turn! If this is an actuall error msg;I don\'t know what you did, my condolances.')
+        def chtur():
+            try:
+                next(turn)
+            except StopIteration:
+                turn=iter(turnorder)
 class place(): 
     def __init__(self,name,x,y,descrip=None): 
         self.name=name 
@@ -73,12 +115,13 @@ class place():
 
     
 class player(): 
-    def __init__(self,name,x,y,management_engine): 
+    def __init__(self,name,x,y,management_engine,hp=100): 
         self.name=name 
         self.x=x 
         self.y=y 
         self.mgeng=management_engine 
-
+        self.hp=hp
+        
     def goto(self,x,y): 
         if self.mgeng.coords_exist(x,y): 
             self.x=x 
@@ -87,10 +130,35 @@ class player():
             log('no such coord: '+str((x,y))+' in mg. eng. : '+str(self.mgeng))
     def look(self):
         return self.mgeng.gattr(self.x,self.y,"descrip")
+    def hpmod(self,amt):
+        self.hp+=amt
+        return hp
             
 
 class move():
-    def __init__(self):
-        pass
+    """A comon parent of different types of moves"""
+    def __init__(self,name,descrip=None):
+        self.name=name
+        self.descrip=descrip
     def move():
-        return "in dev"
+        #the format is effect ie:attack,buff etc ;stat ie:hp,speed etc ;amount ie 69,420,21
+        return (None)
+
+class attack(move):
+    def __init__(self,name,dmg=10,stat='hp',descrip=None):
+        #the stat isnt super nesccescary but hey options, and consistent effect return format
+        super().__init__(name=name,descrip=descrip)
+        self.dmg=dmg
+        eff='attack'
+        self.eff=eff
+    def effect(self):
+        return (self.eff,self.stat,self.dmg)
+
+class buff(move):
+    def __init__(self,name,stat='hp',amt=10,descrip=None):
+        self.stat=stat
+        self.amt=amt
+        super().__init__(name=name,descrip=descrip)
+        eff='buff'
+    def effect(self):
+        return (self.eff,self.stat,self.amt)
