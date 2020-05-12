@@ -23,16 +23,16 @@ class game():
         players=[] 
         self.places=places 
         self.players=players 
-    def addplace(self,place): 
-        if place.exists(): 
-            self.places.append(place) 
-        return place.exists 
+    def addplace(self,plc): 
+        if isinstance(plc,place): 
+            self.places.append(plc) 
+        return isinstance(plc,place) 
         
-    def addplayer(self,player): 
-        if player.exists(): 
-            self.players.append(player) 
+    def addplayer(self,plyr): 
+        if isinstance(plyr,player): 
+            self.players.append(plyr)
 
-        return player.exists 
+        return isinstance(plyr,player) 
         
     def coords_exist(self,x,y): 
         cond=None 
@@ -66,8 +66,7 @@ class place():
         self.x=x 
         self.y=y 
         self.descrip=descrip 
-    def exists(self): 
-        return True 
+
         
 
     
@@ -77,8 +76,7 @@ class player():
         self.x=x 
         self.y=y 
         self.mgeng=management_engine 
-    def exists(self): 
-        return True 
+
     def goto(self,x,y): 
         if self.mgeng.coords_exist(x,y): 
             self.x=x 
