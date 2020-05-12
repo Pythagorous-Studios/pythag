@@ -89,3 +89,8 @@ class player():
         return self.mgeng.gattr(self.x,self.y,"descrip")
             
 
+class move():
+    def __init__(self):
+        pass
+    def move():
+        return "in dev"
