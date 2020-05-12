@@ -16,7 +16,8 @@ class InvalidCoords(BaseException):
     pass
 
 """classes"""
-class game(): 
+class game():
+    
     def __init__(self,name): 
         self.name=name
         places=[] 
@@ -58,7 +59,8 @@ class game():
                         return place.descrip
                 except:
                     pass
-                 
+    class bat_mng():
+        def __init__
 class place(): 
     def __init__(self,name,x,y,descrip=None): 
         self.name=name 
