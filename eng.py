@@ -116,12 +116,13 @@ class place():
     
 class player(): 
     def __init__(self,name,x,y,management_engine,hp=100): 
+        moves=[]
         self.name=name 
         self.x=x 
         self.y=y 
         self.mgeng=management_engine 
         self.hp=hp
-        
+        self.moves=moves
     def goto(self,x,y): 
         if self.mgeng.coords_exist(x,y): 
             self.x=x 
@@ -133,7 +134,16 @@ class player():
     def hpmod(self,amt):
         self.hp+=amt
         return hp
-            
+    def learn(self,mv):
+        if mv.isinstance(mv,move):
+            if mv not in self.moves:
+                #maybe more conditions?
+                self.moves.append(mv)
+    def forget(self,mv):
+        if mv in self.moves:
+            self.moves.remove(mv)
+    def humoves(self):
+        return [mv for mv in self.moves mv.name]
 
 class move():
     """A comon parent of different types of moves"""
