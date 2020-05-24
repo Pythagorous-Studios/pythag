@@ -1,2 +1,2 @@
 # pythag
-A rudimentary for making text based adventure games in python
+A rudimentary engine for making text based adventure games in python
