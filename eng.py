@@ -144,6 +144,8 @@ class player():
             self.moves.remove(mv)
     def humoves(self):
         return [mv for mv in self.moves mv.name]
+    def action(self,mv):
+        """do move"""
 
 class move():
     """A comon parent of different types of moves"""
